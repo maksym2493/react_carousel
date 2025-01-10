@@ -54,11 +54,9 @@ class App extends React.Component<{}, State> {
               name="itemWidth"
               min={50}
               value={itemWidth}
-              onChange={event => {
-                const newValue = +event.currentTarget.value;
-
-                this.setState({ itemWidth: newValue < 50 ? 50 : newValue });
-              }}
+              onChange={event =>
+                this.setState({ itemWidth: +event.currentTarget.value })
+              }
             />
           </label>
 
@@ -112,13 +110,11 @@ class App extends React.Component<{}, State> {
               type="number"
               name="animationDuration"
               value={animationDuration}
-              onChange={event => {
-                const newValue = +event.currentTarget.value;
-
+              onChange={event =>
                 this.setState({
-                  animationDuration: newValue < 50 ? 50 : newValue,
-                });
-              }}
+                  animationDuration: +event.currentTarget.value,
+                })
+              }
             />
           </label>
 
