@@ -107,7 +107,7 @@ class App extends React.Component<{}, State> {
             Infinite:
             <input
               type="checkbox"
-              name="inifinite"
+              name="infinite"
               checked={infinite}
               onChange={() => this.setState({ infinite: !infinite })}
             />
