@@ -30,6 +30,17 @@ const Carousel: React.FC<Props> = ({
   const [reorder, setReorder] = useState(0);
   const [elements, setElements] = useState([...images]);
 
+  useEffect(() => {
+    if (reorder) {
+      setReorder(0);
+      setPos(prev => prev + reorder);
+    }
+
+    if (fast) {
+      setFast(false);
+    }
+  }, [reorder, fast]);
+
   if (!infinite) {
     for (let i = 0; i < elements.length; i++) {
       if (images[i] !== elements[i]) {
@@ -43,19 +54,6 @@ const Carousel: React.FC<Props> = ({
     setFast(true);
     setPos(elements.length - frameSize);
   }
-
-  const end = elements.length - 1;
-
-  useEffect(() => {
-    if (reorder) {
-      setReorder(0);
-      setPos(prev => prev + reorder);
-    }
-
-    if (fast) {
-      setFast(false);
-    }
-  }, [reorder, fast]);
 
   const prev = () => {
     const newPos = Math.max(0, pos - step);
@@ -81,7 +79,7 @@ const Carousel: React.FC<Props> = ({
     const newPos = Math.min(pos + step, elements.length - frameSize);
 
     if (infinite) {
-      if (newPos + frameSize != end - step) {
+      if (newPos != pos + step) {
         setPos(0);
         setReorder(step);
         setElements([...elements.slice(pos), ...elements.slice(0, pos)]);
