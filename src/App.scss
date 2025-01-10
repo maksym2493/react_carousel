@@ -18,7 +18,6 @@
     align-items: center;
     grid-auto-flow: column;
     justify-content: space-between;
-    grid-template-columns: 1fr minmax(150px, 1fr);
 
     & input {
       padding: 10px;
