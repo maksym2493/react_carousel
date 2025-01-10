@@ -54,9 +54,11 @@ class App extends React.Component<{}, State> {
               name="itemWidth"
               min={50}
               value={itemWidth}
-              onChange={event =>
-                this.setState({ itemWidth: +event.currentTarget.value })
-              }
+              onChange={event => {
+                const newValue = +event.currentTarget.value;
+
+                this.setState({ itemWidth: newValue < 50 ? 50 : newValue });
+              }}
             />
           </label>
 
@@ -67,11 +69,18 @@ class App extends React.Component<{}, State> {
               id="frameId"
               name="frameSize"
               value={frameSize}
-              min="1"
-              max={images.length - step}
-              onChange={event =>
-                this.setState({ frameSize: +event.currentTarget.value })
-              }
+              onChange={event => {
+                const newValue = +event.currentTarget.value;
+
+                this.setState({
+                  frameSize:
+                    newValue < 1
+                      ? 1
+                      : newValue > images.length - step
+                        ? images.length - step
+                        : newValue,
+                });
+              }}
             />
           </label>
 
@@ -82,11 +91,18 @@ class App extends React.Component<{}, State> {
               id="stepId"
               name="step"
               value={step}
-              min={1}
-              max={images.length - frameSize}
-              onChange={event =>
-                this.setState({ step: +event.currentTarget.value })
-              }
+              onChange={event => {
+                const newValue = +event.currentTarget.value;
+
+                this.setState({
+                  step:
+                    newValue < 1
+                      ? 1
+                      : newValue > images.length - frameSize
+                        ? images.length - frameSize
+                        : newValue,
+                });
+              }}
             />
           </label>
 
@@ -95,11 +111,14 @@ class App extends React.Component<{}, State> {
             <input
               type="number"
               name="animationDuration"
-              min={50}
               value={animationDuration}
-              onChange={event =>
-                this.setState({ animationDuration: +event.currentTarget.value })
-              }
+              onChange={event => {
+                const newValue = +event.currentTarget.value;
+
+                this.setState({
+                  animationDuration: newValue < 50 ? 50 : newValue,
+                });
+              }}
             />
           </label>
 

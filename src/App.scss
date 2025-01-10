@@ -9,8 +9,6 @@
 }
 
 .form {
-  width: 400px;
-
   display: grid;
   row-gap: 20px;
 
@@ -19,7 +17,8 @@
     column-gap: 20px;
     align-items: center;
     grid-auto-flow: column;
-    grid-template-columns: 1fr 2fr;
+    justify-content: space-between;
+    grid-template-columns: 1fr minmax(150px, 1fr);
 
     & input {
       padding: 10px;
